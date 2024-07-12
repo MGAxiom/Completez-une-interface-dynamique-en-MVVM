@@ -47,6 +47,7 @@
             tools:text="Restaurant Indien" />
 
         <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -81,9 +82,144 @@
                 app:chipStrokeColor="#CF2F2F"
                 app:textEndPadding="0dp"
                 app:textStartPadding="0dp" />
-
-
         </com.google.android.material.chip.ChipGroup>
+
+        <LinearLayout
+            android:id="@+id/rating_container"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/separator"
+            app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
+            app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
+            app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName">
+
+            <TextView
+                android:id="@+id/tv_average_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:fontFamily="@font/jakarta_semibold"
+                android:text="4.0"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:progressTint="#FFB800"
+                android:rating="4.0"
+                android:stepSize="0.1"
+                app:layout_constraintBottom_toTopOf="@+id/tv_review_count"
+                app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
+                app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_average_rating" />
+
+            <TextView
+                android:id="@+id/tv_review_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="(576)"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
+                app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
+                tools:ignore="HardcodedText"
+                android:fontFamily="@font/jakarta_regular"
+                tools:layout_editor_absoluteY="632dp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/rating_progress_container"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:paddingVertical="5dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_container"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintStart_toEndOf="@+id/tvRestaurantType"
+            app:layout_constraintTop_toTopOf="@+id/rating_container">
+
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:padding="4dp"
+                android:progress="100"
+                android:progressBackgroundTint="#DADADA"
+                android:progressTint="#FFB800" />
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:padding="4dp"
+                android:progress="80"
+                android:progressBackgroundTint="#DADADA"
+                android:progressTint="#FFB800" />
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:padding="4dp"
+                android:progress="60"
+                android:progressBackgroundTint="#DADADA"
+                android:progressTint="#FFB800" />
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:padding="4dp"
+                android:progress="40"
+                android:progressBackgroundTint="#DADADA"
+                android:progressTint="#FFB800" />
+
+            <ProgressBar
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:padding="4dp"
+                android:progress="20"
+                android:progressBackgroundTint="#DADADA"
+                android:progressTint="#FFB800" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/button_book_now"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="@font/jakarta_semibold"
+            android:text="Laisser un avis"
+            app:layout_constraintBottom_toBottomOf="@+id/rating_container"
+            app:layout_constraintEnd_toEndOf="@+id/rating_progress_container"
+            app:layout_constraintTop_toBottomOf="@+id/rating_progress_container"
+            tools:ignore="HardcodedText" />
+
 
         <View
             android:id="@+id/separator"
@@ -96,7 +232,7 @@
             app:layout_constraintBottom_toTopOf="@+id/tvRestaurantHours"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvRestaurantName" />
+            app:layout_constraintTop_toBottomOf="@id/tv_review_count" />
 
         <ImageView
             android:id="@+id/icon_hours"
@@ -108,6 +244,7 @@
             app:layout_constraintBottom_toBottomOf="@id/tvRestaurantDay"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@id/tvRestaurantDay" />
+
 
         <TextView
             android:id="@+id/tvRestaurantDay"
