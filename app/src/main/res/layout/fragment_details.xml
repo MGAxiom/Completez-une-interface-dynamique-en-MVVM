@@ -84,18 +84,6 @@
                 app:textStartPadding="0dp" />
         </com.google.android.material.chip.ChipGroup>
 
-        <LinearLayout
-            android:id="@+id/rating_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            app:layout_constraintBottom_toTopOf="@+id/separator"
-            app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
-            app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
-            app:layout_constraintTop_toBottomOf="@+id/tvRestaurantName">
-
             <TextView
                 android:id="@+id/tv_average_rating"
                 android:layout_width="wrap_content"
@@ -105,7 +93,11 @@
                 android:text="4.0"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                tools:ignore="HardcodedText" />
+                tools:ignore="HardcodedText"
+                app:layout_constraintTop_toBottomOf="@id/tvRestaurantName"
+                app:layout_constraintStart_toStartOf="@id/tvRestaurantName"
+                app:layout_constraintEnd_toEndOf="@id/tvRestaurantName"
+                />
             <RatingBar
                 android:id="@+id/ratingBar2"
                 style="?android:attr/ratingBarStyleSmall"
@@ -129,11 +121,11 @@
                 android:text="(576)"
                 android:layout_marginTop="15dp"
                 app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
+                app:layout_constraintTop_toBottomOf="@id/ratingBar2"
                 app:layout_constraintStart_toStartOf="@+id/tvRestaurantName"
                 tools:ignore="HardcodedText"
                 android:fontFamily="@font/jakarta_regular"
                 tools:layout_editor_absoluteY="632dp" />
-        </LinearLayout>
 
 
         <LinearLayout
@@ -142,12 +134,11 @@
             android:layout_height="0dp"
             android:gravity="center_vertical"
             android:orientation="vertical"
-            android:paddingVertical="5dp"
-            android:layout_marginBottom="10dp"
-            app:layout_constraintBottom_toBottomOf="@+id/rating_container"
+            app:layout_constraintBottom_toBottomOf="@id/ratingBar2"
             app:layout_constraintEnd_toEndOf="@+id/chipGroup"
             app:layout_constraintStart_toEndOf="@+id/tvRestaurantType"
-            app:layout_constraintTop_toTopOf="@+id/rating_container">
+            app:layout_constraintTop_toTopOf="@id/tv_average_rating"
+            app:layout_constraintBottom_toTopOf="@id/button_book_now">
 
 
             <ProgressBar
@@ -210,12 +201,11 @@
             android:id="@+id/button_book_now"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:clickable="true"
             android:focusable="true"
             android:fontFamily="@font/jakarta_semibold"
             android:text="Laisser un avis"
-            app:layout_constraintBottom_toBottomOf="@+id/rating_container"
+            app:layout_constraintBottom_toBottomOf="@id/tv_review_count"
             app:layout_constraintEnd_toEndOf="@+id/rating_progress_container"
             app:layout_constraintTop_toBottomOf="@+id/rating_progress_container"
             tools:ignore="HardcodedText" />
