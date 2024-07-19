@@ -39,10 +39,12 @@
 
             <ImageView
                 android:id="@+id/thumbnail"
-                android:layout_width="75dp"
-                android:layout_height="75dp"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:contentDescription="Profile picture"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_launcher" />
+                android:src="@drawable/ic_launcher"
+                card_view:ignore="HardcodedText" />
 
         </androidx.cardview.widget.CardView>
 
@@ -50,47 +52,75 @@
             android:id="@+id/username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
+            android:text="Manon Garcia"
+            android:textSize="12sp"
+            android:fontFamily="@font/jakarta_semibold"
             app:layout_constraintStart_toEndOf="@+id/profileImage"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="10dp"
+            card_view:ignore="HardcodedText" />
 
         <RatingBar
             android:id="@+id/profileRatingBar"
-            style="?android:attr/ratingBarStyleSmall"
+            style="@style/Widget.AppCompat.RatingBar.Indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="20dp"
             android:isIndicator="true"
             android:numStars="5"
             android:progressTint="#FFB800"
             android:rating="4.0"
             android:stepSize="0.1"
+            android:scaleX=".7"
+            android:scaleY=".7"
+            android:transformPivotX="0dp"
+            android:transformPivotY="0dp"
             app:layout_constraintBottom_toBottomOf="@+id/profileImage"
             app:layout_constraintStart_toEndOf="@id/profileImage"
             app:layout_constraintTop_toBottomOf="@id/username" />
 
-        <Button
+        <com.google.android.material.chip.Chip
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#CF2F2F"
             android:text="Valider"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:chipBackgroundColor="#CF2F2F"
+            app:chipCornerRadius="12dp"
+            app:layout_constraintBottom_toBottomOf="@+id/profileRatingBar"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@+id/username"
+            card_view:ignore="HardcodedText"
+            app:chipStrokeColor="#CF2F2F"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/outlinedTextField"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:boxCornerRadiusTopStart="10dp"
+            app:boxCornerRadiusBottomStart="10dp"
+            app:boxCornerRadiusBottomEnd="10dp"
+            app:boxCornerRadiusTopEnd="10dp"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Partagez ici les détails de votre expérience"
-            app:layout_constraintTop_toBottomOf="@+id/profileImage">
+            app:layout_constraintTop_toBottomOf="@+id/profileImage"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            card_view:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/jakarta_regular"
+                android:textSize="12sp"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
+
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"

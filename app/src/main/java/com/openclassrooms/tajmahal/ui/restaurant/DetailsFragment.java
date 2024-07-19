@@ -117,10 +117,12 @@ public class DetailsFragment extends Fragment {
         binding.tvRestaurantPhoneNumber.setText(restaurant.getPhoneNumber());
         binding.chipOnPremise.setVisibility(restaurant.isDineIn() ? View.VISIBLE : View.GONE);
         binding.chipTakeAway.setVisibility(restaurant.isTakeAway() ? View.VISIBLE : View.GONE);
+        binding.tvAverageRating.setText(String.format("%.1f", restaurant.getAverageRating()));
 
         binding.buttonAdress.setOnClickListener(v -> openMap(restaurant.getAddress()));
         binding.buttonPhone.setOnClickListener(v -> dialPhoneNumber(restaurant.getPhoneNumber()));
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
+        //binding.addReview.setOnClickListener(v -> addReview());
     }
 
     /**

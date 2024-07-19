@@ -206,7 +206,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/button_book_now"
+            android:id="@+id/add_review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:clickable="true"
