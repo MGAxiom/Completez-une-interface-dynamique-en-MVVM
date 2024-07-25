@@ -1,5 +1,6 @@
 package com.openclassrooms.tajmahal.domain.model;
 
+import java.util.List;
 import java.util.Objects;
 
 
@@ -108,6 +109,39 @@ public class Review {
     public void setRate(int rate) {
         this.rate = rate;
     }
+
+    /**
+     * Calculates the average rating of a list of reviews.
+     *
+     * @param reviews the list of reviews
+     * @return the average rating, or 0 if the list is empty
+     */
+    public static float calculateAverageRating(List<Review> reviews) {
+        if (reviews == null || reviews.isEmpty()) {
+            return 0;
+        }
+
+        int sum = 0;
+        for (Review review : reviews) {
+            sum += review.getRate();
+        }
+
+        return (float) ((double) sum / reviews.size());
+    }
+
+    public static int getRatingPercentage(int targetRate, List<Review> reviews) {
+        int count = 0;
+        for (Review review : reviews) {
+            if (review.getRate() == targetRate) {
+                count++;
+            }
+        }
+
+        double percentage = (double) count / reviews.size() * 100;
+        return (int) Math.round(percentage);
+    }
+
+
 
     /**
      * Compares this review with another object for equality.

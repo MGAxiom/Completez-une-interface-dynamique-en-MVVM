@@ -19,6 +19,9 @@ import android.widget.Toast;
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
+import com.openclassrooms.tajmahal.domain.model.Review;
+
+import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
@@ -62,7 +65,8 @@ public class DetailsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupUI(); // Sets up user interface components.
         setupViewModel(); // Prepares the ViewModel for the fragment.
-        detailsViewModel.getTajMahalRestaurant().observe(requireActivity(), this::updateUIWithRestaurant); // Observes changes in the restaurant data and updates the UI accordingly.
+        detailsViewModel.getTajMahalRestaurant().observe(requireActivity(), this::updateUIWithRestaurant);
+        detailsViewModel.getReviews().observe(requireActivity(), this::updateUIWithReview);// Observes changes in the restaurant data and updates the UI accordingly.
     }
 
     /**
@@ -117,12 +121,22 @@ public class DetailsFragment extends Fragment {
         binding.tvRestaurantPhoneNumber.setText(restaurant.getPhoneNumber());
         binding.chipOnPremise.setVisibility(restaurant.isDineIn() ? View.VISIBLE : View.GONE);
         binding.chipTakeAway.setVisibility(restaurant.isTakeAway() ? View.VISIBLE : View.GONE);
-        binding.tvAverageRating.setText(String.format("%.1f", restaurant.getAverageRating()));
 
         binding.buttonAdress.setOnClickListener(v -> openMap(restaurant.getAddress()));
         binding.buttonPhone.setOnClickListener(v -> dialPhoneNumber(restaurant.getPhoneNumber()));
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
         //binding.addReview.setOnClickListener(v -> addReview());
+    }
+
+    private void updateUIWithReview(List<Review> review) {
+        binding.tvAverageRating.setText(String.valueOf(Review.calculateAverageRating(review)));;
+        binding.tvReviewCount.setText(String.format("(%d)", review.size()));
+        binding.ratingBar.setRating(Review.calculateAverageRating(review));
+        binding.progressBarReview5.setProgress(Review.getRatingPercentage(5, review));
+        binding.progressBarReview4.setProgress(Review.getRatingPercentage(4, review));
+        binding.progressBarReview3.setProgress(Review.getRatingPercentage(3, review));
+        binding.progressBarReview2.setProgress(Review.getRatingPercentage(2, review));
+        binding.progressBarReview1.setProgress(Review.getRatingPercentage(1, review));
     }
 
     /**

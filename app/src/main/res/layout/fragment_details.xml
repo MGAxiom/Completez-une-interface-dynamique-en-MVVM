@@ -156,6 +156,7 @@
 
 
             <ProgressBar
+                android:id="@+id/progress_bar_review_5"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -166,6 +167,7 @@
                 android:progressTint="#FFB800" />
 
             <ProgressBar
+                android:id="@+id/progress_bar_review_4"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -176,6 +178,7 @@
                 android:progressTint="#FFB800" />
 
             <ProgressBar
+                android:id="@+id/progress_bar_review_3"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -186,6 +189,7 @@
                 android:progressTint="#FFB800" />
 
             <ProgressBar
+                android:id="@+id/progress_bar_review_2"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
@@ -196,6 +200,7 @@
                 android:progressTint="#FFB800" />
 
             <ProgressBar
+                android:id="@+id/progress_bar_review_1"
                 style="@android:style/Widget.ProgressBar.Horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
