@@ -211,7 +211,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/add_review"
+            android:id="@+id/add_review_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:clickable="true"

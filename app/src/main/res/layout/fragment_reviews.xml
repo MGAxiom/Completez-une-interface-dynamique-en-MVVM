@@ -3,10 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+
 <com.google.android.material.appbar.AppBarLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
@@ -15,11 +19,13 @@
         app:layout_constraintBottom_toTopOf="@+id/profileImage"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
-        app:title="@string/app_name" />
+        app:title="Taj Mahal" />
+
 </com.google.android.material.appbar.AppBarLayout>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/review_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
@@ -107,7 +113,7 @@
             android:layout_marginTop="20dp"
             android:hint="Partagez ici les détails de votre expérience"
             app:layout_constraintTop_toBottomOf="@+id/profileImage"
-            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintBottom_toTopOf="@id/reviewsRecyclerView"
             card_view:ignore="HardcodedText">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -120,9 +126,11 @@
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/reviewsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -121,11 +121,14 @@ public class DetailsFragment extends Fragment {
         binding.tvRestaurantPhoneNumber.setText(restaurant.getPhoneNumber());
         binding.chipOnPremise.setVisibility(restaurant.isDineIn() ? View.VISIBLE : View.GONE);
         binding.chipTakeAway.setVisibility(restaurant.isTakeAway() ? View.VISIBLE : View.GONE);
+        binding.addReviewButton.setOnClickListener(v -> {
+            // Replace the fragment
+            replaceFragment(new ReviewFragment());
+        });;
 
         binding.buttonAdress.setOnClickListener(v -> openMap(restaurant.getAddress()));
         binding.buttonPhone.setOnClickListener(v -> dialPhoneNumber(restaurant.getPhoneNumber()));
         binding.buttonWebsite.setOnClickListener(v -> openBrowser(restaurant.getWebsite()));
-        //binding.addReview.setOnClickListener(v -> addReview());
     }
 
     private void updateUIWithReview(List<Review> review) {
@@ -139,6 +142,18 @@ public class DetailsFragment extends Fragment {
         binding.progressBarReview1.setProgress(Review.getRatingPercentage(1, review));
     }
 
+
+    private void replaceFragment(Fragment fragment) {
+        // Replace the current fragment with the new fragment
+        getParentFragmentManager().beginTransaction()
+                .setCustomAnimations(
+                        R.anim.fade_in,
+                        R.anim.slide_out
+                )
+                .replace(R.id.container, fragment)
+                .addToBackStack(null) // Optional: add the transaction to the back stack
+                .commit();
+    }
     /**
      * Opens the provided address in Google Maps or shows an error if Google Maps
      * is not installed.
