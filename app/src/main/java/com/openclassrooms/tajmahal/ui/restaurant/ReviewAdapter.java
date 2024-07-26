@@ -1,8 +1,6 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,15 +9,12 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.openclassrooms.tajmahal.R;
 import com.openclassrooms.tajmahal.domain.model.Review;
+import com.squareup.picasso.Picasso;
 
-import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.List;
 
 public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder> {
@@ -45,7 +40,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         Review review = reviews.get(position);
         holder.usernameView.setText(review.getUsername());
         holder.reviewView.setText(review.getComment());
-        //holder.ratingBar.setRating(4.0f);
+        holder.ratingBar.setRating(review.getRate());
+        Picasso.get().load(review.getPicture()).into(holder.profilePictureView);
 
 //        URL url;
 //        try {
@@ -77,8 +73,8 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
             super(itemView);
             usernameView = itemView.findViewById(R.id.username);
             reviewView = itemView.findViewById(R.id.listProfileReview);
-            profilePictureView = itemView.findViewById(R.id.profileImage);
-            ratingBar = itemView.findViewById(R.id.ratingBar);
+            profilePictureView = itemView.findViewById(R.id.listProfileImage);
+            ratingBar = itemView.findViewById(R.id.profileRatingBar);
         }
 
         public TextView getUsernameView() {

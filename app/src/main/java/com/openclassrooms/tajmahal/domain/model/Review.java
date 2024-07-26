@@ -97,8 +97,9 @@ public class Review {
      *
      * @return an integer representing the rating value
      */
-    public int getRate() {
-        return rate;
+    public float getRate() {
+        float floatRate = (float) rate;
+        return floatRate;
     }
 
     /**
