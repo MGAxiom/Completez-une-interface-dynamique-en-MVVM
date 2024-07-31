@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.RatingBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -14,8 +15,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.openclassrooms.tajmahal.data.service.RestaurantApi;
+import com.openclassrooms.tajmahal.data.service.RestaurantFakeApi;
 import com.openclassrooms.tajmahal.databinding.FragmentReviewsBinding;
 import com.openclassrooms.tajmahal.domain.model.Review;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,11 +46,24 @@ public class ReviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupUI();
         setupViewModel();
+        final float[] newReviewRating = {0.0f};
 
         // Initialize adapter and set it to RecyclerView
         adapter = new ReviewAdapter(this.getContext(), reviewList);
+        Picasso.get().load(reviewViewModel.getProfileImageUrl()).into(binding.profileImage);
         binding.reviewsRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         binding.reviewsRecyclerView.setAdapter(adapter);
+        binding.validateChip.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                reviewViewModel.setReviews(new Review(
+                        binding.username.getText().toString(),
+                        reviewViewModel.getProfileImageUrl(),
+                        binding.outlinedTextField.getEditText().getText().toString(),
+                        Math.round(binding.profileRatingBar.getRating())));
+
+            }
+        });
 
         // Observe changes in the ViewModel
         reviewViewModel.getReviews().observe(getViewLifecycleOwner(), this::updateUIWithReview);

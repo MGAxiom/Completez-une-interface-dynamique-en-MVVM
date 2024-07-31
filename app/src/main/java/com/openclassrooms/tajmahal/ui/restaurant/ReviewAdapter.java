@@ -42,20 +42,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
         holder.reviewView.setText(review.getComment());
         holder.ratingBar.setRating(review.getRate());
         Picasso.get().load(review.getPicture()).into(holder.profilePictureView);
-
-//        URL url;
-//        try {
-//            url = new URL(review.getPicture());
-//        } catch (MalformedURLException e) {
-//            throw new RuntimeException(e);
-//        }
-//        Bitmap bmp = null;
-//        try {
-//            bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        holder.profilePictureView.setImageBitmap(bmp);
     }
 
     @Override
@@ -75,10 +61,6 @@ public class ReviewAdapter extends RecyclerView.Adapter<ReviewAdapter.ViewHolder
             reviewView = itemView.findViewById(R.id.listProfileReview);
             profilePictureView = itemView.findViewById(R.id.listProfileImage);
             ratingBar = itemView.findViewById(R.id.profileRatingBar);
-        }
-
-        public TextView getUsernameView() {
-            return usernameView;
         }
     }
 }

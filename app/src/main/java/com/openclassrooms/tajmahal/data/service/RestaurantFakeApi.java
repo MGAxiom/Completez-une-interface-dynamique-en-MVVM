@@ -3,7 +3,6 @@ package com.openclassrooms.tajmahal.data.service;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +37,6 @@ public class RestaurantFakeApi implements RestaurantApi {
             new Review("Emilie Hood", "https://xsgames.co/randomusers/assets/avatars/female/20.jpg", "Très bon restaurant Indien ! Je recommande.", 4)
     );
 
-
     /**
      * Retrieves a hard-coded {@link Restaurant} object for the "Taj Mahal".
      * <p>
@@ -71,4 +69,7 @@ public class RestaurantFakeApi implements RestaurantApi {
         return reviews;
     }
 
+    public void setReviews(Review review) {
+        this.reviews.add(review);
+    }
 }

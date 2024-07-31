@@ -142,8 +142,6 @@ public class Review {
         return (int) Math.round(percentage);
     }
 
-
-
     /**
      * Compares this review with another object for equality.
      * Two reviews are considered equal if all their fields are identical.

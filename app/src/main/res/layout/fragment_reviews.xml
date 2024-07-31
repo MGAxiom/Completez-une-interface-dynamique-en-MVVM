@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/profileImage"
+        app:layout_constraintBottom_toTopOf="@+id/profileCardView"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="?attr/homeAsUpIndicator"
         app:title="Taj Mahal" />
@@ -33,7 +33,7 @@
 
 
         <androidx.cardview.widget.CardView
-            android:id="@id/profileImage"
+            android:id="@id/profileCardView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toStartOf="@id/username"
@@ -44,7 +44,7 @@
 
 
             <ImageView
-                android:id="@+id/thumbnail"
+                android:id="@+id/profileImage"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:contentDescription="Profile picture"
@@ -61,32 +61,29 @@
             android:text="Manon Garcia"
             android:textSize="12sp"
             android:fontFamily="@font/jakarta_semibold"
-            app:layout_constraintStart_toEndOf="@+id/profileImage"
+            app:layout_constraintStart_toEndOf="@+id/profileCardView"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginStart="10dp"
             card_view:ignore="HardcodedText" />
 
         <RatingBar
             android:id="@+id/profileRatingBar"
-            style="@style/Widget.AppCompat.RatingBar.Indicator"
+            style="@style/Widget.AppCompat.RatingBar.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="20dp"
-            android:isIndicator="true"
             android:numStars="5"
+            android:isIndicator="false"
             android:progressTint="#FFB800"
-            android:rating="4.0"
             android:stepSize="0.1"
-            android:scaleX=".7"
-            android:scaleY=".7"
-            android:transformPivotX="0dp"
-            android:transformPivotY="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/profileImage"
-            app:layout_constraintStart_toEndOf="@id/profileImage"
+
+            app:layout_constraintBottom_toBottomOf="@+id/profileCardView"
+            app:layout_constraintStart_toEndOf="@id/profileCardView"
             app:layout_constraintTop_toBottomOf="@id/username" />
 
         <com.google.android.material.chip.Chip
+            android:id="@+id/validateChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Valider"
@@ -112,7 +109,7 @@
             android:layout_marginBottom="15dp"
             android:layout_marginTop="20dp"
             android:hint="Partagez ici les détails de votre expérience"
-            app:layout_constraintTop_toBottomOf="@+id/profileImage"
+            app:layout_constraintTop_toBottomOf="@+id/profileCardView"
             app:layout_constraintBottom_toTopOf="@id/reviewsRecyclerView"
             card_view:ignore="HardcodedText">
 

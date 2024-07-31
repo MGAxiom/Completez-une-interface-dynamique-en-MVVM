@@ -35,4 +35,13 @@ public class ReviewViewModel extends ViewModel {
     public LiveData<List<Review>> getReviews() {
         return restaurantRepository.getReviews();
     }
+
+    public LiveData<Review> setReviews(Review reviews) {
+        restaurantRepository.setReviews(reviews);
+        return null;
+    }
+
+    public String getProfileImageUrl() {
+        return "https://xsgames.co/randomusers/assets/avatars/female/70.jpg";
+    }
 }
