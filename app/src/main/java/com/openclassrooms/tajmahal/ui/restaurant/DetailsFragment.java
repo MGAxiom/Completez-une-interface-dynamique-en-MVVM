@@ -132,7 +132,7 @@ public class DetailsFragment extends Fragment {
     }
 
     private void updateUIWithReview(List<Review> review) {
-        binding.tvAverageRating.setText(String.valueOf(Review.calculateAverageRating(review)));;
+        binding.tvAverageRating.setText(String.format("%.1f",Review.calculateAverageRating(review)));;
         binding.tvReviewCount.setText(String.format("(%d)", review.size()));
         binding.ratingBar.setRating(Review.calculateAverageRating(review));
         binding.progressBarReview5.setProgress(Review.getRatingPercentage(5, review));

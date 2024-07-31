@@ -36,9 +36,8 @@ public class ReviewViewModel extends ViewModel {
         return restaurantRepository.getReviews();
     }
 
-    public LiveData<Review> setReviews(Review reviews) {
+    public void setReviews(Review reviews) {
         restaurantRepository.setReviews(reviews);
-        return null;
     }
 
     public String getProfileImageUrl() {

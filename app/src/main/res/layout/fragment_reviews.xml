@@ -34,22 +34,23 @@
 
         <androidx.cardview.widget.CardView
             android:id="@id/profileCardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             app:layout_constraintEnd_toStartOf="@id/username"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             card_view:cardCornerRadius="40dp"
-            card_view:cardElevation="0dp">
+            card_view:cardElevation="3dp">
 
 
             <ImageView
                 android:id="@+id/profileImage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:contentDescription="Profile picture"
                 android:scaleType="centerCrop"
                 android:src="@drawable/ic_launcher"
+                android:adjustViewBounds="true"
                 card_view:ignore="HardcodedText" />
 
         </androidx.cardview.widget.CardView>

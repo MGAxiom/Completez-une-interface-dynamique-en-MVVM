@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -32,7 +33,7 @@ public class ReviewFragment extends Fragment {
 
     private FragmentReviewsBinding binding;
     private ReviewAdapter adapter;
-    private List<Review> reviewList = new ArrayList<>();
+    private final List<Review> reviewList = new ArrayList<>();
     private ReviewViewModel reviewViewModel;
 
     @Override
@@ -46,7 +47,6 @@ public class ReviewFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupUI();
         setupViewModel();
-        final float[] newReviewRating = {0.0f};
 
         // Initialize adapter and set it to RecyclerView
         adapter = new ReviewAdapter(this.getContext(), reviewList);
@@ -56,12 +56,21 @@ public class ReviewFragment extends Fragment {
         binding.validateChip.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                reviewViewModel.setReviews(new Review(
-                        binding.username.getText().toString(),
-                        reviewViewModel.getProfileImageUrl(),
-                        binding.outlinedTextField.getEditText().getText().toString(),
-                        Math.round(binding.profileRatingBar.getRating())));
+                float currentRating = binding.profileRatingBar.getRating();
+                String currentReview = binding.outlinedTextField.getEditText().getText().toString();
 
+                if (currentRating <= 0.0 || currentReview.isEmpty()  ) {
+                    Toast.makeText(
+                            getContext(),
+                            "Please select at least one star and a review before validating it.",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    reviewViewModel.setReviews(new Review(
+                            binding.username.getText().toString(),
+                            reviewViewModel.getProfileImageUrl(),
+                            binding.outlinedTextField.getEditText().getText().toString(),
+                            Math.round(binding.profileRatingBar.getRating())));
+                }
             }
         });
 
