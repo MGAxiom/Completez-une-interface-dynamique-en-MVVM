@@ -101,7 +101,7 @@
             tools:ignore="HardcodedText" />
 
         <RatingBar
-            android:id="@+id/ratingBar"
+            android:id="@+id/restaurantRatingBar"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:numStars="5"
             android:progressTint="#FFB800"
             android:rating="4.0"
-            android:stepSize="0.1"
+            android:stepSize="0.5"
             app:layout_constraintBottom_toBottomOf="@id/rating_progress_container"
             app:layout_constraintBottom_toTopOf="@+id/tv_review_count"
             app:layout_constraintEnd_toEndOf="@+id/tvRestaurantName"
@@ -121,7 +121,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:barrierDirection="bottom"
-            app:constraint_referenced_ids="ratingBar, rating_progress_container" />
+            app:constraint_referenced_ids="restaurantRatingBar, rating_progress_container" />
 
         <Space
             android:id="@+id/review_spacer"
@@ -149,7 +149,7 @@
             android:gravity="center_vertical"
             android:orientation="vertical"
             android:layout_marginTop="10dp"
-            app:layout_constraintBottom_toBottomOf="@id/ratingBar"
+            app:layout_constraintBottom_toBottomOf="@id/restaurantRatingBar"
             app:layout_constraintEnd_toEndOf="@+id/chipGroup"
             app:layout_constraintStart_toEndOf="@+id/tvRestaurantType"
             app:layout_constraintTop_toTopOf="@id/tv_average_rating">
@@ -162,7 +162,6 @@
                 android:layout_height="4dp"
                 android:layout_marginBottom="8dp"
                 android:max="100"
-                android:progress="100"
                 android:progressBackgroundTint="#DADADA"
                 android:progressTint="#FFB800" />
 
@@ -173,7 +172,6 @@
                 android:layout_height="4dp"
                 android:layout_marginBottom="8dp"
                 android:max="100"
-                android:progress="80"
                 android:progressBackgroundTint="#DADADA"
                 android:progressTint="#FFB800" />
 
@@ -184,7 +182,6 @@
                 android:layout_height="4dp"
                 android:layout_marginBottom="8dp"
                 android:max="100"
-                android:progress="60"
                 android:progressBackgroundTint="#DADADA"
                 android:progressTint="#FFB800" />
 
@@ -195,7 +192,6 @@
                 android:layout_height="4dp"
                 android:layout_marginBottom="8dp"
                 android:max="100"
-                android:progress="40"
                 android:progressBackgroundTint="#DADADA"
                 android:progressTint="#FFB800" />
 
@@ -205,7 +201,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="4dp"
                 android:max="100"
-                android:progress="20"
                 android:progressBackgroundTint="#DADADA"
                 android:progressTint="#FFB800" />
         </LinearLayout>

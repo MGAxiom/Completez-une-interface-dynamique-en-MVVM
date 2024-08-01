@@ -1,5 +1,6 @@
 package com.openclassrooms.tajmahal.domain.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -132,15 +133,17 @@ public class Review {
 
     //Returns the percentage based on the all the reviews matching targetRate
     public static int getRatingPercentage(int targetRate, List<Review> reviews) {
-        int count = 0;
-        for (Review review : reviews) {
-            if (review.getRate() == targetRate) {
-                count++;
-            }
-        }
+        int count = (int) reviews.stream().filter(
+                review -> review.getRate() == targetRate
+        ).count();
 
-        double percentage = (double) count / reviews.size() * 100;
-        return (int) Math.round(percentage);
+//        for (Review review : reviews) {
+//            if (review.getRate() == targetRate) {
+//                count++;
+//            }
+//        }
+
+        return 100 * count / reviews.size();
     }
 
     /**

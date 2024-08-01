@@ -69,11 +69,18 @@ public class ReviewFragment extends Fragment {
                             binding.username.getText().toString(),
                             reviewViewModel.getProfileImageUrl(),
                             binding.outlinedTextField.getEditText().getText().toString(),
-                            Math.round(binding.profileRatingBar.getRating())));
+                            (int) binding.profileRatingBar.getRating()
+                    ));
                 }
             }
         });
 
+        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getActivity().onBackPressed();
+            }
+        });
         // Observe changes in the ViewModel
         reviewViewModel.getReviews().observe(getViewLifecycleOwner(), this::updateUIWithReview);
     }

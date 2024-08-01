@@ -1,7 +1,9 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.media.Rating;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -10,10 +12,14 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.ProgressBar;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import com.openclassrooms.tajmahal.R;
@@ -21,6 +27,7 @@ import com.openclassrooms.tajmahal.databinding.FragmentDetailsBinding;
 import com.openclassrooms.tajmahal.domain.model.Restaurant;
 import com.openclassrooms.tajmahal.domain.model.Review;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -45,7 +52,7 @@ public class DetailsFragment extends Fragment {
      * It's used to perform one-time initialization.
      *
      * @param savedInstanceState A bundle containing previously saved instance state.
-     * If the fragment is being re-created from a previous saved state, this is the state.
+     *                           If the fragment is being re-created from a previous saved state, this is the state.
      */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,9 +63,9 @@ public class DetailsFragment extends Fragment {
      * This method is called immediately after `onCreateView()`.
      * Use this method to perform final initialization once the fragment views have been inflated.
      *
-     * @param view The View returned by `onCreateView()`.
+     * @param view               The View returned by `onCreateView()`.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
+     *                           from a previous saved state as given here.
      */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -72,11 +79,11 @@ public class DetailsFragment extends Fragment {
     /**
      * Creates and returns the view hierarchy associated with the fragment.
      *
-     * @param inflater The LayoutInflater object that can be used to inflate any views in the fragment.
-     * @param container If non-null, this is the parent view that the fragment's UI should be attached to.
-     * The fragment should not add the view itself but return it.
+     * @param inflater           The LayoutInflater object that can be used to inflate any views in the fragment.
+     * @param container          If non-null, this is the parent view that the fragment's UI should be attached to.
+     *                           The fragment should not add the view itself but return it.
      * @param savedInstanceState If non-null, this fragment is being re-constructed
-     * from a previous saved state as given here.
+     *                           from a previous saved state as given here.
      * @return Returns the View for the fragment's UI, or null.
      */
     @Override
@@ -124,7 +131,8 @@ public class DetailsFragment extends Fragment {
         binding.addReviewButton.setOnClickListener(v -> {
             // Replace the fragment
             replaceFragment(new ReviewFragment());
-        });;
+        });
+        ;
 
         binding.buttonAdress.setOnClickListener(v -> openMap(restaurant.getAddress()));
         binding.buttonPhone.setOnClickListener(v -> dialPhoneNumber(restaurant.getPhoneNumber()));
@@ -132,19 +140,32 @@ public class DetailsFragment extends Fragment {
     }
 
     private void updateUIWithReview(List<Review> review) {
-        binding.tvAverageRating.setText(String.format("%.1f",Review.calculateAverageRating(review)));;
+        float averageRating = Review.calculateAverageRating(review);
+
+        binding.tvAverageRating.setText(String.format("%.1f", averageRating));
         binding.tvReviewCount.setText(String.format("(%d)", review.size()));
-        binding.ratingBar.setRating(Review.calculateAverageRating(review));
-        binding.progressBarReview5.setProgress(Review.getRatingPercentage(5, review));
-        binding.progressBarReview4.setProgress(Review.getRatingPercentage(4, review));
-        binding.progressBarReview3.setProgress(Review.getRatingPercentage(3, review));
-        binding.progressBarReview2.setProgress(Review.getRatingPercentage(2, review));
-        binding.progressBarReview1.setProgress(Review.getRatingPercentage(1, review));
+        updateProgress(binding.restaurantRatingBar, averageRating);
+        updateProgress(binding.progressBarReview5, Review.getRatingPercentage(5, review));
+        updateProgress(binding.progressBarReview4, Review.getRatingPercentage(4, review));
+        updateProgress(binding.progressBarReview3, Review.getRatingPercentage(3, review));
+        updateProgress(binding.progressBarReview2, Review.getRatingPercentage(2, review));
+        updateProgress(binding.progressBarReview1, Review.getRatingPercentage(1, review));
     }
 
+    // updates ProgressBar and RatingBar on the main thread
+    private void updateProgress(ProgressBar view, float value) {
+        view.post(() -> {
+                    if (view instanceof RatingBar) {
+                        ((RatingBar) view).setRating(value);
+                    } else {
+                        view.setProgress(Math.round(value));
+                    }
+                }
+        );
+    }
 
     private void replaceFragment(Fragment fragment) {
-        // Replace the current fragment with the new fragment
+        // Replace the current fragment with the new fragment using animations
         getParentFragmentManager().beginTransaction()
                 .setCustomAnimations(
                         R.anim.fade_in,
@@ -154,6 +175,7 @@ public class DetailsFragment extends Fragment {
                 .addToBackStack(null) // Optional: add the transaction to the back stack
                 .commit();
     }
+
     /**
      * Opens the provided address in Google Maps or shows an error if Google Maps
      * is not installed.

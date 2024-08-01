@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/listProfileReview"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Service très rapide et nourriture délicieuse, nous mangeons ici chaque week-end, c'est très rapide et savoureux. Continuez ainsi!"
         app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +66,9 @@
         android:layout_marginBottom="15dp"
         tools:ignore="HardcodedText"
         android:fontFamily="@font/jakarta_regular"
-        android:textSize="12sp"/>
+        android:textSize="12sp"
+        android:gravity="start"
+        android:layout_gravity="start"/>
 
     <View
         android:id="@+id/list_separator"
