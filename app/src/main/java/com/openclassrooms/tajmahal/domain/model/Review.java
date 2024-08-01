@@ -130,6 +130,7 @@ public class Review {
         return (float) ((double) sum / reviews.size());
     }
 
+    //Returns the percentage based on the all the reviews matching targetRate
     public static int getRatingPercentage(int targetRate, List<Review> reviews) {
         int count = 0;
         for (Review review : reviews) {
