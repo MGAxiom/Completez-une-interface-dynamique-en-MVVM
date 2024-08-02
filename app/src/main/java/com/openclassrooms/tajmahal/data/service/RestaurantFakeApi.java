@@ -71,6 +71,8 @@ public class RestaurantFakeApi implements RestaurantApi {
     }
 
     public void setReviews(Review review) {
-        this.reviews.add(0, review);
+        if (review.getComment() != "" && review.getRate() != 0 && review.getPicture() != "" && review.getUsername() != "") {
+            this.reviews.add(0, review);
+        }
     }
 }

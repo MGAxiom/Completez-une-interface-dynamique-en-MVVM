@@ -1,11 +1,14 @@
 package com.openclassrooms.tajmahal.ui.restaurant;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.view.WindowInsetsController;
+import android.view.WindowManager;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
@@ -39,6 +42,18 @@ public class ReviewFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentReviewsBinding.inflate(inflater, container, false); // Binds the layout using view binding.
+        WindowInsetsController insetsController = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            insetsController = requireActivity().getWindow().getInsetsController();
+        }
+        if (insetsController != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                insetsController.setSystemBarsAppearance(
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                        WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+                );
+            }
+        }
         return binding.getRoot();
     }
 
@@ -59,7 +74,7 @@ public class ReviewFragment extends Fragment {
                 float currentRating = binding.profileRatingBar.getRating();
                 String currentReview = binding.outlinedTextField.getEditText().getText().toString();
 
-                if (currentRating <= 0.0 || currentReview.isEmpty()  ) {
+                if (currentRating <= 0.0 || currentReview.isEmpty()) {
                     Toast.makeText(
                             getContext(),
                             "Please select at least one star and a review before validating it.",
@@ -71,6 +86,8 @@ public class ReviewFragment extends Fragment {
                             binding.outlinedTextField.getEditText().getText().toString(),
                             (int) binding.profileRatingBar.getRating()
                     ));
+                    binding.outlinedTextField.getEditText().setText("");
+                    binding.profileRatingBar.setRating(0.0f);
                 }
             }
         });
@@ -101,5 +118,21 @@ public class ReviewFragment extends Fragment {
 
     private void setupViewModel() {
         reviewViewModel = new ViewModelProvider(this).get(ReviewViewModel.class);
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        // Revert the status bar icon color to the default or desired color when exiting the fragment
+        WindowInsetsController insetsController = null;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+            insetsController = requireActivity().getWindow().getInsetsController();
+        }
+        if (insetsController != null) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                insetsController.setSystemBarsAppearance(0, WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS);
+            }
+        }
     }
 }
