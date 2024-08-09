@@ -19,10 +19,6 @@ import java.util.List;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class TajMahalUnitTest {
-
-//    @Rule
-//    public InstantTaskExecutorRule instantTaskExecutorRule = new InstantTaskExecutorRule();
-
     private RestaurantFakeApi restaurantFakeApi;
     private RestaurantRepository restaurantRepository;
 

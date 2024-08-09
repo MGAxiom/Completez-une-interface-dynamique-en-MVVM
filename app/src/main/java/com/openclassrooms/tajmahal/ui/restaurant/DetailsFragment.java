@@ -44,7 +44,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class DetailsFragment extends Fragment {
 
     private FragmentDetailsBinding binding;
-
     private DetailsViewModel detailsViewModel;
 
     /**

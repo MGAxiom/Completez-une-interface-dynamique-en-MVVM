@@ -55,7 +55,6 @@ public class RestaurantFakeApi implements RestaurantApi {
                 true, true);
     }
 
-
     /**
      * Retrieves a hard-coded {@link Review} object for the "Taj Mahal".
      * <p>

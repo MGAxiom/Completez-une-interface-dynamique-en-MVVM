@@ -123,7 +123,6 @@ public class ReviewFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-
         // Revert the status bar icon color to the default or desired color when exiting the fragment
         WindowInsetsController insetsController = null;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

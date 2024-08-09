@@ -91,5 +91,4 @@ public class DetailsViewModel extends ViewModel {
         }
         return dayString;
     }
-
 }

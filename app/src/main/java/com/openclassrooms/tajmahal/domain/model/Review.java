@@ -136,13 +136,6 @@ public class Review {
         int count = (int) reviews.stream().filter(
                 review -> review.getRate() == targetRate
         ).count();
-
-//        for (Review review : reviews) {
-//            if (review.getRate() == targetRate) {
-//                count++;
-//            }
-//        }
-
         return 100 * count / reviews.size();
     }
 
